@@ -19,12 +19,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Validate') {
-            steps {
-                bat 'terraform validate'
-            }
-        }
-
+       
         stage('Terraform Plan') {
             steps {
                 bat 'terraform plan -out=tfplan'
