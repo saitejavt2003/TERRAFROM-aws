@@ -11,7 +11,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/saitejavt2003/TERRAFROM-aws.git'
+                // Explicitly checkout the "main" branch since your repo uses "main"
+                git branch: 'main', url: 'https://github.com/saitejavt2003/TERRAFROM-aws.git'
             }
         }
         stage('Plan') {
@@ -31,7 +32,7 @@ pipeline {
             }
             steps {
                 script {
-                    def plan = readFile 'terraform/tfplan.txt'
+                    def plan = readFile('terraform/tfplan.txt')
                     input message: "Do you want to apply the plan?",
                           parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                 }
