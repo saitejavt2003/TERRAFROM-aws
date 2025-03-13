@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Explicitly checkout the "main" branch since your repo uses "main"
+                
                 git branch: 'main', url: 'https://github.com/saitejavt2003/TERRAFROM-aws.git'
             }
         }
