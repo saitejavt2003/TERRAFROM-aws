@@ -27,3 +27,25 @@ resource "aws_instance" "app" {
     Name = "app-instance"
   }
 }
+# Data block to fetch the latest Amazon Linux 2 AMI
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+}
+
+# EC2 instance resource referencing the AMI
+resource "aws_instance" "app" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+  # Add other required parameters like subnet_id, security_groups, etc.
+}
