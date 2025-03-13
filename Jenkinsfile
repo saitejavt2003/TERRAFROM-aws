@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/saitejavt2003/terrafrom_sevices.git'
+                git 'https://github.com/saitejavt2003/TERRAFROM-aws.git'
             }
         }
         stage('Plan') {
